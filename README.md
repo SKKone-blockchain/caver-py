@@ -15,7 +15,7 @@ The BApp (Blockchain Application) Development sample projects using caver-js are
 Github Repository
 =================
 
-* [caver-js](https://github.com/SKKone-klaytn/caver-py)
+* [caver-py](https://github.com/SKKone-klaytn/caver-py)
 
 Related Projects
 =================
