@@ -1,4 +1,4 @@
-caver-js
+caver-py
 =================
 
 caver-py is a Python API library that allows developers to interact with a
