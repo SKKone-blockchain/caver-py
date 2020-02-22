@@ -1,2 +1,6 @@
+from .account.account import Account
+
 class Klay:
-  pass
+  def __init__(self, provider):
+    self.provider = provider
+    self.account = Account()
