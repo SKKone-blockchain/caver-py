@@ -6,7 +6,7 @@ from .accountKey.accountKeyMultiSig import AccountKeyMultiSig
 from .accountKey.accountKeyRoleBase import AccountKeyRoleBase
 
 #this Accounts Object hase two feature
-# 1. Walle
+# 1. Wallet
 # 2. Account Factory Methods
 
 class Accounts:
