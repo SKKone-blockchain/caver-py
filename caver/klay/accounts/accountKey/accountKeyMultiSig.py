@@ -1,0 +1,2 @@
+class AccountKeyMultiSig:
+  pass
