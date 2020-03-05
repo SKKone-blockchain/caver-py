@@ -13,13 +13,12 @@ from hexbytes import (
 )
 
 from eth_keys import (
-  KeyAPI,
   keys
 )
 
 import os
 
-def createKey(entropy='') :
+def createKey(entropy) :
   extra_key_bytes = text_if_str(to_bytes, entropy)
   key_bytes = keccak(os.urandom(32) + extra_key_bytes)
   key = parsePrivateKey(key_bytes)
@@ -33,6 +32,6 @@ def parsePrivateKey(key_bytes) :
     return key_bytes
 
   try:
-    return key.PrivateKey(HexBytes(key_bytes))
+    return keys.PrivateKey(HexBytes(key_bytes))
   except:
     raise ValueError("The private key must be exactly 32 bytes long")

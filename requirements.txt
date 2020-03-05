@@ -9,12 +9,14 @@ eth-hash==0.2.0
 eth-keys==0.3.1
 eth-typing==2.2.1
 eth-utils==1.8.4
+hexbytes==0.2.0
 idna==2.8
 isort==4.3.21
 lazy-object-proxy==1.4.3
 marshmallow==2.20.5
 mccabe==0.6.1
 platformio==4.1.0
+pycryptodome==3.9.7
 pyelftools==0.25
 pylint==2.4.4
 pyserial==3.4

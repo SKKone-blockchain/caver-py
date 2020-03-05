@@ -22,7 +22,7 @@ class Accounts:
 
   # createWith{someting} is method for make complete Account Factory Method
   @staticmethod
-  def create(entropy = None):
+  def create(entropy=''):
     key_pair = createKey(entropy)
     return Account(key_pair["address"], AccountKeyPublic(key_pair["private_key"]))
 
