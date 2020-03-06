@@ -1,26 +1,37 @@
-from bytes import Bytes
-from hashFunction import *
+from eth_utils.curried import (
+    combomethod,
+    hexstr_if_str,
+    is_dict,
+    keccak,
+    text_if_str,
+    to_bytes,
+    to_int,
+)
 
-def createKeyPair(entropy) :
-  innerHex = keccak256(Bytes.concat(Bytes.random(32), Bytes.random(32)))
-  middleHex = Bytes.concat(Bytes.concat(Bytes.random(32), innerHex), Bytes.random(32))
-  outerHex = keccak256(middleHex)
-  return generateKeyPairWithPrivateKey(outerHex)
+from hexbytes import (
+    HexBytes,
+)
 
-def generateKeyPairWithPrivateKey(privateKey) :
-  # 아래 자바스크립트 코드 참조, 타원곡선암호와 동일한 방식으로 퍼블릭키 도출 후
-  # 짝수 홀수에 따라 퍼블릭키 결정
-  # Ethereum KeyPair와 동일
+from eth_keys import (
+  keys
+)
 
-  # const buffer = Buffer(privateKey.slice(2), "hex");
-  # const ecKey = secp256k1.keyFromPrivate(buffer);
-  # const publicKey = "0x" + ecKey.getPublic(false, 'hex').slice(2);
-  # const publicHash = keccak256(publicKey);
-  # const address = toChecksum("0x" + publicHash.slice(-40));
-  address  = 'calculated publickey_hash_check'
-  key_pair = {
-    "address" : address,
-    "private_key" : privateKey
+import os
+
+def createKey(entropy) :
+  extra_key_bytes = text_if_str(to_bytes, entropy)
+  key_bytes = keccak(os.urandom(32) + extra_key_bytes)
+  key = parsePrivateKey(key_bytes)
+
+  return {
+    "private_key" : key,
+    "address" : key.public_key.to_checksum_address()
   }
+def parsePrivateKey(key_bytes) :
+  if isinstance(key_bytes, keys.PrivateKey):
+    return key_bytes
 
-  return key_pair
+  try:
+    return keys.PrivateKey(HexBytes(key_bytes))
+  except:
+    raise ValueError("The private key must be exactly 32 bytes long")
