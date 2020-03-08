@@ -1,11 +1,6 @@
 from caver.caver import Caver
 
 def provider_test():
-  caver = Caver("localhost:8551")
-  a = caver.klay.accounts.create()
-  print (a.address)
-  print (a.accountKey.key.to_bytes())
-  print (a.accountKey.key.to_hex())
-  print (a.accountKey.type)
-
+  caver = Caver("https://api.baobab.klaytn.net:8651")
+  block = caver.klay.blocks.getBlockByNumber()
 provider_test()
