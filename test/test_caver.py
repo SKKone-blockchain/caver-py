@@ -1,2 +1,2 @@
 def test_caver():
-    assert 1
+    assert 0
