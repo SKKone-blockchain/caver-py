@@ -8,38 +8,38 @@ class Klay:
     self.blocks = Blocks(provider)
     self.defaultBlock = 'latest'
 
-  def getBlockNumber():
+  def getBlockNumber(self):
+    return self.blocks.getCurrentBlockNumber()
+
+  def getBlock(self):
     pass
 
-  def getBlock():
+  def getBlockReceipts(self):
     pass
 
-  def getBlockReceipts():
+  def getBlockTransactionCount(self):
     pass
 
-  def getBlockTransactionCount():
+  def getBlockWithConsensusInfo(self):
     pass
 
-  def getBlockWithConsensusInfo():
+  def getCommittee(self):
     pass
 
-  def getCommittee():
+  def getCommitteeSize(self):
     pass
 
-  def getCommitteeSize():
+  def getCouncil(self):
     pass
 
-  def getCouncil():
+  def getCouncilSize(self):
     pass
 
-  def getCouncilSize():
+  def getStorageAt(self):
     pass
 
-  def getStorageAt():
+  def isMining(self):
     pass
 
-  def isMining():
-    pass
-
-  def isSyncing():
+  def isSyncing(self):
     pass

@@ -23,3 +23,17 @@ def getBlockTest():
     print('다른 블록입니다.')
 
 getBlockTest()
+
+def getCurrentBlockNumber():
+  import json, requests
+  payload = {
+      "method": "klay_blockNumber",
+      "params": [],
+      "jsonrpc": "2.0",
+      "id": 0,
+    }
+  response = requests.post(caver.getProvider(), json=payload).json()
+  print(caver.klay.getBlockNumber() == response['result'])
+  print()
+
+getCurrentBlockNumber()
