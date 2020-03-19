@@ -6,3 +6,4 @@ class Klay:
     self.provider = provider
     self.accounts = Accounts()
     self.blocks = Blocks(provider)
+    self.defaultBlock = 'latest'
