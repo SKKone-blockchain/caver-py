@@ -22,4 +22,4 @@ def getBlockTest():
   else:
     print('다른 블록입니다.')
 
-getBlockByHash()
+getBlockTest()
