@@ -13,9 +13,9 @@ def getBlockTest():
   getBlockByNumber와 getBlockByHash는 서로 다른 데이터를 가져오므로 사용에 따라 유의
   '''
   block = caver.klay.blocks.getBlockByNumber(blockNum)
-  print('current block:', block)
+  print('current block:', block.number)
   nblock = caver.klay.blocks.getBlockByHash(block.hash)
-  print('get block by hash({})\n'.format(block.hash), nblock)
+  print('get block by hash({})\n'.format(block.hash), nblock.number)
 
   if block.transactions_root == nblock.transactions_root:
     print('동일한 블록이 맞습니다.')
