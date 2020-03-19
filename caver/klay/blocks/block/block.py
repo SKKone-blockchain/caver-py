@@ -9,7 +9,6 @@ class Block:
       except:
         return None
 
-
     self.blockscore = getParam("blockscore")
     self.extra_data = getParam("extraData")
     self.gas_used = getParam("gasUsed")

@@ -10,7 +10,7 @@ def getBlockTest():
   blockNum = caver.klay.blocks.getCurrentBlockNumber()
   print('current block number:', blockNum)
   '''
-  getBlockByNumber와 getBlockByHash는 서로 다른 데이터를 가져오므로 사용에 따라 유의
+  getBlockByNumber와 getBlockByHash는 서로 다른 데이터를 가져오므로 사용에 유의
   '''
   block = caver.klay.blocks.getBlockByNumber(blockNum)
   print('current block:', block.number)
