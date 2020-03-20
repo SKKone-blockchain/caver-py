@@ -1,5 +1,6 @@
 class Block:
   def __init__(self,parameter):
+
     '''
     parameter들 중 result에 존재하는 것만 받음
     '''

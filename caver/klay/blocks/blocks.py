@@ -27,13 +27,3 @@ class Blocks:
     }
     response = requests.post(self.provider, json=payload).json()
     return Block(response["result"])
-  
-  def getBlockByHash(self, hash='0x', onlyTxHash=False):
-    payload = {
-        "method": "klay_getBlockByHash",
-        "params": [hash, onlyTxHash],
-        "jsonrpc": "2.0",
-        "id":1
-    }
-    response = requests.post(self.provider, json=payload).json()
-    return Block(response["result"])
