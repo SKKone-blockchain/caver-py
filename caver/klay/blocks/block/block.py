@@ -1,6 +1,10 @@
 class Block:
   def __init__(self,parameter):
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9a78dec01cd5a52c7456ee5dd931268c572bea0f
     '''
     parameter들 중 result에 존재하는 것만 받음
     '''
@@ -29,6 +33,7 @@ class Block:
     self.timestamp_FoS = getParam('timestampFoS')
     self.transactions = getParam('transactions')
     self.vote_data = getParam('voteData')
+<<<<<<< HEAD
 =======
     self.blockscore = parameter["blockscore"]
     self.extra_data = parameter["extraData"]
@@ -38,3 +43,5 @@ class Block:
     self.number = parameter["number"]
     self.parent_hash = parameter["parentHash"]
 >>>>>>> 86db6c1390cae6aba0395469f047d93243807964
+=======
+>>>>>>> 9a78dec01cd5a52c7456ee5dd931268c572bea0f
