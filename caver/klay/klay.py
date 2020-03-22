@@ -11,11 +11,14 @@ class Klay:
   def getBlockNumber(self):
     return self.blocks.getCurrentBlockNumber()
 
-  def getBlock(self):
-    pass
+  def getBlock(self, inputs):
+    if type(inputs) == str:
+      return self.blocks.getBlockByHash(inputs)
+    else:
+      return self.blocks.getBlockByNumber(hex(inputs))
 
-  def getBlockReceipts(self):
-    pass
+  def getBlockReceipts(self, blockhash):
+    return self.blocks.getBlockReceipts(blockhash)
 
   def getBlockTransactionCount(self):
     pass
