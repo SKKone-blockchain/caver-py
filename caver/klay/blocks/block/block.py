@@ -6,4 +6,4 @@ class Block:
     self.governance_data = parameter["governanceData"]
     self.hash = parameter["hash"]
     self.number = parameter["number"]
-    self.parent_hash = parameter["parentHash"]
+    self.parent_hash = parameter["parentHash"]x
