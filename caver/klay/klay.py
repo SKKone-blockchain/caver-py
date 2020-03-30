@@ -20,29 +20,38 @@ class Klay:
   def getBlockReceipts(self, blockhash):
     return self.blocks.getBlockReceipts(blockhash)
 
-  def getBlockTransactionCount(self):
+  def getBlockTransactionCount(self, inputs):
+    if type(inputs) == str:
+      return self.blocks.getBlockTransactionCountByNumber(inputs)
+
+    else: 
+      return self.blocks.getBlockTransactionCountByHash(hex(inputs))
     pass
 
-  def getBlockWithConsensusInfo(self):
-    pass
+  def getBlockWithConsensusInfo(self, inputs):
+    if type(inputs) == str:
+      return self.blocks.getBlockWithConsensusInfoByHash(inputs)
 
-  def getCommittee(self):
-    pass
+    else:
+      return self.blocks.getBlockWithConsensusInfoByNumber(hex(inputs))
 
-  def getCommitteeSize(self):
-    pass
+  def getCommittee(self, defaultBlock="latest"):
+    return self.blocks.getCommittee(defaultBlock)
 
-  def getCouncil(self):
-    pass
+  def getCommitteeSize(self, defaultBlock="latest"):
+    return self.blocks.getCommitteeSize(defaultBlock)
 
-  def getCouncilSize(self):
-    pass
+  def getCouncil(self, defaultBlock="latest"):
+    return self.blocks.getCouncil(defaultBlock)
 
-  def getStorageAt(self):
-    pass
+  def getCouncilSize(self, defaultBlock="latest"):
+    return self.blocks.getCouncilSize(defaultBlock)
+
+  def getStorageAt(self, address, position, defaultBlock="latest"):
+    return self.blocks.getStorageAt(address, position, defaultBlock)
 
   def isMining(self):
-    pass
+    return self.blocks.isMining()
 
   def isSyncing(self):
-    pass
+    return self.blocks.isSyncing()

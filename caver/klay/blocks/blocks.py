@@ -59,6 +59,29 @@ class Blocks:
     response = requests.post(self.provider, json=payload).json()
     return list(response["result"])
 
+
+  def getBlockTransactionCountByNumber(self, number=None):
+    self.__numberCheck(number)
+    payload = {
+        "method": "klay_getBlockTransactionCountByNumber",
+        "params": [number, true],
+        "jsonrpc": "2.0",
+        "id": 1,
+    }
+    response = requests.post(self.provider, json=payload).json()
+    return Block(response["result"])
+
+  def getBlockTransactionCountByHash(self, hash=None):
+    self.__hashCheck(hash)
+    payload = {
+        "method": "klay_getBlockTransactionCountByHash",
+        "params": [hash],
+        "jsonrpc": "2.0",
+        "id": 1,
+    }
+    response = requests.post(self.provider, json=payload).json()
+    return list(response["result"])
+
   def getBlockWithConsensusInfoByHash(self, hash=None):
     self.__hashCheck(hash)
 
@@ -119,7 +142,7 @@ class Blocks:
     response = requests.post(self.provider, json=payload).json()
     return list(response["result"])
 
-  def getCouncilSize(self, defaultBlock):
+  def getCouncilSize(self, defaultBlock="latest"):
     self.__numberCheck(defaultBlock)
 
     payload = {
