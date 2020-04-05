@@ -10,10 +10,12 @@ class Blocks:
     self.provider = provider
 
   def __hashCheck(self, hash):
-    assert type(hash) == str and hash[:2] == '0x', "hash is None or not a (bytes) string"
+    if not(type(hash) == str and hash[:2] == '0x'):
+      raise ValueError("hash is None or not a (bytes) string")
 
   def __numberCheck(self, number):
-    assert number=="latest" or int(number,16)<=int(self.getCurrentBlockNumber(),16), "Invalid number, number is bigger than the recent block number or is None"
+    if not(number=="latest" or int(number,16)<=int(self.getCurrentBlockNumber(),16)):
+      raise ValueError("Invalid number, number is bigger than the recent block number or is None")
   
   def getCurrentBlockNumber(self):
     payload = {
