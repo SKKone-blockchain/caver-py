@@ -15,7 +15,7 @@ class Block:
     self.gas_used = getParam("gasUsed")
     self.governance_data = getParam("governanceData")
     self.hash = getParam("hash")
-    self.number = getParam("number")
+    self.number = int(getParam("number"),16)
     self.parent_hash = getParam("parentHash")
     self.proposer = getParam('proposer')
     self.logs_bloom = getParam('logsBloom')

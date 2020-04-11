@@ -16,4 +16,14 @@ def test_getBlockNumber_and_HashTest():
   assert block.transactions_root == nblock.transactions_root, '다른 블록입니다.'
 
 def test_getBlockReceipts():
-  pass
+  blockNum = caver.klay.blocks.getCurrentBlockNumber()
+  block = caver.klay.getBlock(int(blockNum, 16))
+  try:
+    receipt = caver.klay.blocks.getBlockReceipts(block.hash)
+  except:
+    assert 0
+
+def test_getTransactionCountByNumber_and_hash():
+  blockNum = caver.klay.blocks.getCurrentBlockNumber()
+  block = caver.klay.getBlock(int(blockNum, 16))
+  assert caver.klay.blocks.getBlockTransactionCountByHash(block.hash) == caver.klay.blocks.getBlockTransactionCountByNumber(blockNum)

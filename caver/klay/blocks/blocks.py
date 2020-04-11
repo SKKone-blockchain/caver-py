@@ -31,7 +31,7 @@ class Blocks:
     self.__numberCheck(number)
     payload = {
         "method": "klay_getBlockByNumber",
-        "params": [number, true],
+        "params": [number, True],
         "jsonrpc": "2.0",
         "id": 0,
     }
@@ -66,12 +66,12 @@ class Blocks:
     self.__numberCheck(number)
     payload = {
         "method": "klay_getBlockTransactionCountByNumber",
-        "params": [number, true],
+        "params": [number],
         "jsonrpc": "2.0",
         "id": 1,
     }
     response = requests.post(self.provider, json=payload).json()
-    return Block(response["result"])
+    return response["result"]
 
   def getBlockTransactionCountByHash(self, hash=None):
     self.__hashCheck(hash)
@@ -82,7 +82,7 @@ class Blocks:
         "id": 1,
     }
     response = requests.post(self.provider, json=payload).json()
-    return list(response["result"])
+    return response["result"]
 
   def getBlockWithConsensusInfoByHash(self, hash=None):
     self.__hashCheck(hash)
@@ -111,29 +111,29 @@ class Blocks:
   def getCommittee(self, defaultBlock="latest"):
     self.__numberCheck(defaultBlock)
     
-      payload = {
-        "method": "klay_getCommittee",
-        "params": [defaultBlock],
-        "jsonrpc": "2.0",
-        "id": 73,
-      }
-      response = requests.post(self.provider, json=payload).json()
-      return list(response["result"])
+    payload = {
+      "method": "klay_getCommittee",
+      "params": [defaultBlock],
+      "jsonrpc": "2.0",
+      "id": 73,
+    }
+    response = requests.post(self.provider, json=payload).json()
+    return list(response["result"])
   
   def getCommitteeSize(self, defaultBlock="latest"):
     self.__numberCheck(defaultBlock)
 
-      payload = {
-        "method": "klay_getCommitteeSize",
-        "params": [defaultBlock],
-        "jsonrpc": "2.0",
-        "id": 73,
-      }
-      response = requests.post(self.provider, json=payload).json()
-      return list(response["result"])
+    payload = {
+      "method": "klay_getCommitteeSize",
+      "params": [defaultBlock],
+      "jsonrpc": "2.0",
+      "id": 73,
+    }
+    response = requests.post(self.provider, json=payload).json()
+    return list(response["result"])
 
   def getCouncil(self, defaultBlock="latest"):
-      self.__numberCheck(defaultBlock)
+    self.__numberCheck(defaultBlock)
 
     payload = {
       "method": "klay_getCouncil",

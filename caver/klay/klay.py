@@ -21,11 +21,10 @@ class Klay:
     return self.blocks.getBlockReceipts(blockhash)
 
   def getBlockTransactionCount(self, inputs):
-    if type(inputs) == str:
-      return self.blocks.getBlockTransactionCountByNumber(inputs)
-
+    if type(inputs) != str:
+      return self.blocks.getBlockTransactionCountByNumber(hex(inputs))
     else: 
-      return self.blocks.getBlockTransactionCountByHash(hex(inputs))
+      return self.blocks.getBlockTransactionCountByHash(inputs)
     pass
 
   def getBlockWithConsensusInfo(self, inputs):
