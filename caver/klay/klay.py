@@ -8,25 +8,6 @@ class Klay:
     self.blocks = Blocks(provider)
     self.defaultBlock = 'latest'
 
-  def getBlockNumber(self):
-    return self.blocks.getCurrentBlockNumber()
-
-  def getBlock(self, inputs):
-    if type(inputs) == str:
-      return self.blocks.getBlockByHash(inputs)
-    else:
-      return self.blocks.getBlockByNumber(hex(inputs))
-
-  def getBlockReceipts(self, blockhash):
-    return self.blocks.getBlockReceipts(blockhash)
-
-  def getBlockTransactionCount(self, inputs):
-    if type(inputs) != str:
-      return self.blocks.getBlockTransactionCountByNumber(hex(inputs))
-    else: 
-      return self.blocks.getBlockTransactionCountByHash(inputs)
-    pass
-
   def getBlockWithConsensusInfo(self, inputs):
     if type(inputs) == str:
       return self.blocks.getBlockWithConsensusInfoByHash(inputs)
