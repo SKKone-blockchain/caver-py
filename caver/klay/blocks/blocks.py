@@ -75,33 +75,39 @@ class Blocks:
     if type(inputs) == int:
       self.__numberCheck(inputs)
       payload['method'] = payload['method'] + 'Number'
+
     elif type(inputs) == str:
       self.__hashCheck(inputs)
       payload['method'] = payload['method'] + 'Hash'
     else:
       raise ValueError("Invalid input's type")
 
-  def getBlockWithConsensusInfoByHash(self, hash=None):
-    self.__hashCheck(hash)
-
-    payload = {
-      "method": "klay_getBlockWithConsensusInfoByHash",
-      "params": [hash],
-      "jsonrpc": "2.0",
-      "id": 73,
-    }
     response = requests.post(self.provider, json=payload).json()
     return list(response["result"])
 
-  def getBlockWithConsensusInfoByNumber(self, number=None):
-    self.__numberCheck(number)
-
+  def getBlockWithConsensusInfo(self, inputs):
+    # if input's type is int, then get block by number.
+    # or is string, then get block by hash
     payload = {
-      "method": "klay_getBlockWithConsensusInfoByNumber",
-      "params": [number],
+      "method": "klay_getBlockWithConsensusInfoBy",
+      "params": [],
       "jsonrpc": "2.0",
       "id": 73,
     }
+
+    if type(inputs) == int:
+      self.__numberCheck(inputs)
+      payload['method'] = payload['method'] + 'Number'
+      payload['params'] = [hex(inputs)]
+
+    elif type(inputs) == str:
+      self.__hashCheck(inputs)
+      payload['method'] = payload['method'] + 'Hash'
+      payload['params'] = [inputs]
+
+    else:
+      raise ValueError("Invalid input's type")
+
     response = requests.post(self.provider, json=payload).json()
     return list(response["result"])
 
