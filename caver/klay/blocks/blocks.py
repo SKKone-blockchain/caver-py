@@ -3,19 +3,21 @@ from .block.block import Block
 import requests
 import json
 
-HASH_LENGTH = 257
-BLOCK_SPECIAL_NUMBER = ("genesis", "latest", "pending")
+
 
 class Blocks:
+  HASH_LENGTH = 257
+  BLOCK_SPECIAL_NUMBER = ("genesis", "latest", "pending")
+
   def __init__(self, provider):
     self.provider = provider
 
   def __hashCheck(self, hash):
-    if not(type(hash) == str and hash[:2] == '0x' and len(hash) <= HASH_LENGTH):
+    if not(type(hash) == str and hash[:2] == '0x' and len(hash) <= self.HASH_LENGTH):
       raise ValueError("hash is None or not a (bytes) string")
 
   def __numberCheck(self, number):
-    if not(number in BLOCK_SPECIAL_NUMBER or number <= int(self.getCurrentBlockNumber(),16)):
+    if not(number in self.BLOCK_SPECIAL_NUMBER or number <= int(self.getCurrentBlockNumber(),16)):
       raise ValueError("Invalid number, number is bigger than the recent block number or is None")
   
   def getCurrentBlockNumber(self): # return number is hex string
@@ -37,7 +39,7 @@ class Blocks:
       "jsonrpc": "2.0",
       "id": 0,
     }
-    if type(inputs) == int or inputs in "latest":
+    if type(inputs) == int or inputs in self.BLOCK_SPECIAL_NUMBER:
       self.__numberCheck(inputs)
       payload['method'] = payload['method'] + 'Number'
       payload['params'] = [hex(inputs), True]
@@ -48,7 +50,7 @@ class Blocks:
     else:
       raise ValueError("Invalid input's type")
     response = requests.post(self.provider, json=payload).json()
-    # print(response)
+    
     return Block(response["result"])
 
   def getBlockReceipts(self, hash=None):
@@ -61,7 +63,7 @@ class Blocks:
         "id": 73,
     }
     response = requests.post(self.provider, json=payload).json()
-    return list(response["result"])
+    return response["result"]
 
   def getBlockTransactionCount(self, inputs):
     # if input's type is int, then get block by number.
@@ -84,8 +86,7 @@ class Blocks:
       raise ValueError("Invalid input's type")
 
     response = requests.post(self.provider, json=payload).json()
-    print(response)
-    return list(response["result"])
+    return int(response["result"], 16)
 
   def getBlockWithConsensusInfo(self, inputs):
     # if input's type is int, then get block by number.
@@ -111,7 +112,7 @@ class Blocks:
       raise ValueError("Invalid input's type")
 
     response = requests.post(self.provider, json=payload).json()
-    return list(response["result"])
+    return response["result"]
 
   def getCommittee(self, defaultBlock="latest"):
     self.__numberCheck(defaultBlock)
@@ -123,7 +124,7 @@ class Blocks:
       "id": 73,
     }
     response = requests.post(self.provider, json=payload).json()
-    return list(response["result"])
+    return response["result"]
   
   def getCommitteeSize(self, defaultBlock="latest"):
     self.__numberCheck(defaultBlock)
@@ -135,7 +136,7 @@ class Blocks:
       "id": 73,
     }
     response = requests.post(self.provider, json=payload).json()
-    return list(response["result"])
+    return response["result"]
 
   def getCouncil(self, defaultBlock="latest"):
     self.__numberCheck(defaultBlock)
@@ -147,7 +148,7 @@ class Blocks:
       "id": 73,
     }
     response = requests.post(self.provider, json=payload).json()
-    return list(response["result"])
+    return response["result"]
 
   def getCouncilSize(self, defaultBlock="latest"):
     self.__numberCheck(defaultBlock)
@@ -159,7 +160,7 @@ class Blocks:
       "id": 73,
     }
     response = requests.post(self.provider, json=payload).json()
-    return list(response["result"])
+    return response["result"]
 
   def getStorageAt(self, address, position, defaultBlock="latest"):
     self.__hashCheck(address)
@@ -172,7 +173,7 @@ class Blocks:
       "id": 1,
     }
     response = requests.post(self.provider, json=payload).json()
-    return list(response["result"])
+    return response["result"]
 
   def isMining(self):
     payload = {
@@ -182,7 +183,7 @@ class Blocks:
       "id": 1,
     }
     response = requests.post(self.provider, json=payload).json()
-    return list(response["result"])
+    return response["result"]
 
   def isSyncing(self):
     payload = {
@@ -192,4 +193,4 @@ class Blocks:
       "id": 1,
     }
     response = requests.post(self.provider, json=payload).json()
-    return list(response["result"])
+    return response["result"]
