@@ -27,4 +27,4 @@ def test_getBlockReceipts():
 def test_getTransactionCount():
   blockNum = caver.klay.blocks.getCurrentBlockNumber()
   block = caver.klay.blocks.getBlock(int(blockNum, 16))
-  assert caver.klay.blocks.getBlockTransactionCount(block.hash) == caver.klay.blocks.getBlockTransactionCount(blockNum)
+  assert caver.klay.blocks.getBlockTransactionCount(block.hash) == caver.klay.blocks.getBlockTransactionCount(block.number)

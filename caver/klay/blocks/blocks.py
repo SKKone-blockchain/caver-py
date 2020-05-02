@@ -68,21 +68,23 @@ class Blocks:
     # or is string, then get block by hash
     payload = {
       "method": "klay_getBlockTransactionCountBy",
-      "params": [inputs],
       "jsonrpc": "2.0",
       "id": 0,
     }
     if type(inputs) == int:
       self.__numberCheck(inputs)
       payload['method'] = payload['method'] + 'Number'
+      payload['params'] = [hex(inputs)]
 
     elif type(inputs) == str:
       self.__hashCheck(inputs)
       payload['method'] = payload['method'] + 'Hash'
+      payload['params'] = [inputs]
     else:
       raise ValueError("Invalid input's type")
 
     response = requests.post(self.provider, json=payload).json()
+    print(response)
     return list(response["result"])
 
   def getBlockWithConsensusInfo(self, inputs):
