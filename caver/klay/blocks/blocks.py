@@ -75,6 +75,7 @@ class Blocks:
     if type(inputs) == int:
       self.__numberCheck(inputs)
       payload['method'] = payload['method'] + 'Number'
+
     elif type(inputs) == str:
       self.__hashCheck(inputs)
       payload['method'] = payload['method'] + 'Hash'
@@ -89,16 +90,21 @@ class Blocks:
     # or is string, then get block by hash
     payload = {
       "method": "klay_getBlockWithConsensusInfoBy",
-      "params": [inputs],
+      "params": [],
       "jsonrpc": "2.0",
       "id": 73,
     }
+
     if type(inputs) == int:
       self.__numberCheck(inputs)
       payload['method'] = payload['method'] + 'Number'
+      payload['params'] = [hex(inputs)]
+
     elif type(inputs) == str:
       self.__hashCheck(inputs)
       payload['method'] = payload['method'] + 'Hash'
+      payload['params'] = [inputs]
+
     else:
       raise ValueError("Invalid input's type")
 
