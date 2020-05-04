@@ -28,3 +28,23 @@ def test_getTransactionCount():
   blockNum = caver.klay.blocks.getCurrentBlockNumber()
   block = caver.klay.blocks.getBlock(int(blockNum, 16))
   assert caver.klay.blocks.getBlockTransactionCount(block.hash) == caver.klay.blocks.getBlockTransactionCount(block.number)
+
+
+def test_getBlockWithConsensusInfo():
+  blockNum = caver.klay.blocks.getCurrentBlockNumber()
+  block = caver.klay.blocks.getBlock(int(blockNum, 16))
+  assert caver.klay.blocks.getBlockWithConsensusInfo(block.hash) == caver.klay.blocks.getBlockWithConsensusInfo(block.number)
+
+
+# def test_getCommittee():
+
+# def test_getCommitteeSize():
+
+# def test_getCouncil():
+
+# def test_getStorageAt():
+
+# def test_isMining():
+
+# def test_isSyncing():
+
