@@ -36,7 +36,9 @@ def test_getBlockWithConsensusInfo():
   assert caver.klay.blocks.getBlockWithConsensusInfo(block.hash) == caver.klay.blocks.getBlockWithConsensusInfo(block.number)
 
 
-# def test_getCommittee():
+def test_getCommittee():
+  blockNum = caver.klay.blocks.getCurrentBlockNumber()
+  assert caver.klay.blocks.getCommittee() == caver.klay.blocks.getCommittee(blockNum)
 
 # def test_getCommitteeSize():
 
