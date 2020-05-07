@@ -164,7 +164,11 @@ class Blocks:
     return response["result"]
 
   def getCouncilSize(self, defaultBlock="latest"):
-    self.__numberCheck(defaultBlock)
+    if defaultBlock in self.BLOCK_SPECIAL_NUMBER:
+      self.__numberCheck(defaultBlock)
+    
+    else:
+      self.__numberCheck(int(defaultBlock, 16))
 
     payload = {
       "method": "klay_getCouncilSize",
