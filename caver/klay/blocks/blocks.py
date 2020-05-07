@@ -181,7 +181,12 @@ class Blocks:
 
   def getStorageAt(self, address, position, defaultBlock="latest"):
     self.__hashCheck(address)
-    self.__numberCheck(defaultBlock)
+    self.__numberCheck(position)
+    if defaultBlock in self.BLOCK_SPECIAL_NUMBER:
+      self.__numberCheck(defaultBlock)
+    
+    else:
+      self.__numberCheck(int(defaultBlock, 16))
 
     payload = {
       "method": "klay_getStorageAt",

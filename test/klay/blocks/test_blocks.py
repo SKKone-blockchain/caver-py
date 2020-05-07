@@ -50,10 +50,14 @@ def test_getCouncilSize():
   blockNum = caver.klay.blocks.getCurrentBlockNumber()
   assert caver.klay.blocks.getCouncilSize() == caver.klay.blocks.getCouncilSize(blockNum)
 
-
 # def test_getStorageAt():
+  # TODO: Review this function
+  # caver.klay.blocks.getStorageAt('0x9e6df5dbc96b2d4f5bee35fd99d832361360c82a', 1)
+  # assert True
 
 # def test_isMining():
+  # TODO: Review this function
+  # assert caver.klay.blocks.isMining()
 
 # def test_isSyncing():
 
