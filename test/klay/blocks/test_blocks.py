@@ -38,15 +38,15 @@ def test_getBlockWithConsensusInfo():
 
 def test_getCommittee():
   blockNum = caver.klay.blocks.getCurrentBlockNumber()
-  print(type(blockNum))
   assert caver.klay.blocks.getCommittee() == caver.klay.blocks.getCommittee(blockNum)
 
 def test_getCommitteeSize():
   blockNum = caver.klay.blocks.getCurrentBlockNumber()
-  print(type(blockNum))
   assert caver.klay.blocks.getCommitteeSize() == caver.klay.blocks.getCommitteeSize(blockNum)
 
-# def test_getCouncil():
+def test_getCouncil():
+  blockNum = caver.klay.blocks.getCurrentBlockNumber()
+  assert caver.klay.blocks.getCouncil() == caver.klay.blocks.getCouncil(blockNum)
 
 # def test_getStorageAt():
 
