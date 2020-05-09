@@ -34,21 +34,22 @@ def test_getBlockWithConsensusInfo():
   block = caver.klay.blocks.getBlock(int(blockNum, 16))
   assert caver.klay.blocks.getBlockWithConsensusInfo(block.hash) == caver.klay.blocks.getBlockWithConsensusInfo(block.number)
 
-def test_getCommittee():
-  blockNum = caver.klay.blocks.getCurrentBlockNumber()
-  assert caver.klay.blocks.getCommittee() == caver.klay.blocks.getCommittee(blockNum)
+# TODO: Refactoring, Mocking 알아보기
+# def test_getCommittee():
+#   blockNum = caver.klay.blocks.getCurrentBlockNumber()
+#   assert caver.klay.blocks.getCommittee() == caver.klay.blocks.getCommittee(blockNum)
 
-def test_getCommitteeSize():
-  blockNum = caver.klay.blocks.getCurrentBlockNumber()
-  assert caver.klay.blocks.getCommitteeSize() == caver.klay.blocks.getCommitteeSize(blockNum)
+# def test_getCommitteeSize():
+#   blockNum = caver.klay.blocks.getCurrentBlockNumber()
+#   assert caver.klay.blocks.getCommitteeSize() == caver.klay.blocks.getCommitteeSize(blockNum)
 
-def test_getCouncil():
-  blockNum = caver.klay.blocks.getCurrentBlockNumber()
-  assert caver.klay.blocks.getCouncil() == caver.klay.blocks.getCouncil(blockNum)
+# def test_getCouncil():
+#   blockNum = caver.klay.blocks.getCurrentBlockNumber()
+#   assert caver.klay.blocks.getCouncil() == caver.klay.blocks.getCouncil(blockNum)
 
-def test_getCouncilSize():
-  blockNum = caver.klay.blocks.getCurrentBlockNumber()
-  assert caver.klay.blocks.getCouncilSize() == caver.klay.blocks.getCouncilSize(blockNum)
+# def test_getCouncilSize():
+#   blockNum = caver.klay.blocks.getCurrentBlockNumber()
+#   assert caver.klay.blocks.getCouncilSize() == caver.klay.blocks.getCouncilSize(blockNum)
 
 # def test_getStorageAt():
   # TODO: Review this function
