@@ -55,7 +55,6 @@ class Blocks:
 
   def getBlockReceipts(self, hash=None):
     self.__hashCheck(hash)
-    print(hash)
     payload = {
         "method": "klay_getBlockReceipts",
         "params": [hash],

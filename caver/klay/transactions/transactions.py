@@ -19,6 +19,7 @@ class Transactions:
     if not(number in self.BLOCK_SPECIAL_NUMBER or number <= int(self.blocks.getCurrentBlockNumber(),16)):
       raise ValueError("Invalid number, number is bigger than the recent block number or is None")
 
+
   def call(self, callObject, blockNumber):
     self.__numberCheck(blockNumber)
     if type(callObject) != dict:
@@ -102,3 +103,80 @@ class Transactions:
     payload["params"] = [blockNumber, index]
     response = requests.post(self.provider, json=payload).json()
     return Transaction(response["result"])
+
+
+  def getTransactionByHash(self, hash):
+    self.__hashCheck(hash)
+    payload = {
+        "jsonrpc": "2.0",
+        "method": "klay_getTransactionByHash",
+        "params": [hash],
+        "id": 1,
+    }
+    response = requests.post(self.provider, json=payload).json()
+    return response["result"]
+
+
+  def getTransactionBySenderTxHash(self, hash):
+    self.__hashCheck(hash)
+    payload = {
+        "jsonrpc": "2.0",
+        "method": "klay_getTransactionBySenderTxHash",
+        "params": [hash],
+        "id": 1,
+    }
+    response = requests.post(self.provider, json=payload).json()
+    return response["result"]
+
+
+  def getTransactionReceipt(self, hash):
+    self.__hashCheck(hash)
+    payload = {
+        "jsonrpc": "2.0",
+        "method": "klay_getTransactionReceipt",
+        "params": [hash],
+        "id": 1,
+    }
+    response = requests.post(self.provider, json=payload).json()
+    return response["result"]
+
+  def getDecodedAnchoringTransactionByHash(self, hash):
+    self.__hashCheck(hash)
+    payload = {
+        "jsonrpc": "2.0",
+        "method": "klay_getTransactionReceiptBySenderTxHash",
+        "params": [hash],
+        "id": 1,
+    }
+    response = requests.post(self.provider, json=payload).json()
+    return response["result"]
+
+
+  def getTransactionReceiptBySenderTxHash(self, hash):
+    self.__hashCheck(hash)
+    payload = {
+        "jsonrpc": "2.0",
+        "method": "klay_getTransactionReceiptBySenderTxHash",
+        "params": [hash],
+        "id": 1,
+    }
+    response = requests.post(self.provider, json=payload).json()
+    return response["result"]
+
+  # def sendRawTransaction(self, inputs):
+
+  #       payload = {
+  #       "jsonrpc": "2.0",
+  #       "method": "klay_sendRawTransaction",
+  #       "params": [?],
+  #       "id": 1,
+  #   }
+  #   response = requests.post(self.provider, json=payload).json()
+  #   return response["result"]
+
+
+  # klay_sendTransaction
+  # klay_sendTransactionAsFeePayer
+  # klay_signTransaction
+  # klay_signTransactionAsFeePayer
+
